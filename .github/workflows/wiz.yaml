@@ -4,7 +4,7 @@ on: [pull_request,push]
 jobs:
   wiz-cli-iac-scan:
     name: 'Wiz-cli IaC Scan'
-    runs-on: ubuntu-latest
+    runs-on: quay.io/podman/stable
     env:
       SCAN_PATH: "." # Set the relative path in the repo to scan
       POLICY: "Default IaC policy" # Set the desired Wiz-cli policy to use
@@ -28,6 +28,11 @@ jobs:
       env:
         WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
         WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+
+    - name: Podman
+      run: podman system service --time 120 &
+      run: DOCKER_HOST=unix:///run/podman/podman.sock
+      run: podman pull docker.io/library/mongo:latest' 
 
     - name: Run wiz-cli IaC scan
       run: ./wizcli docker scan --image kolizo/kaniko-nginx:2.0
