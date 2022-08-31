@@ -39,4 +39,4 @@ jobs:
       run: podman pull docker.io/library/mongo:latest 
 
     - name: Run wiz-cli IaC scan
-      run: ./wizcli docker scan --image kolizo/kaniko-nginx:2.0
+      run: ./wizcli docker scan --image mongo:latest
