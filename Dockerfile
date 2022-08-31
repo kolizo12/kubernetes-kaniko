@@ -1,3 +1,3 @@
-FROM ubuntu:latest
+FROM ubuntu
 
 RUN apt-get update -y
