@@ -39,4 +39,4 @@ jobs:
       run: podman pull docker.io/library/mongo:latest 
 
     - name: Run wiz-cli IaC scan
-      run: DOCKER_HOST=unix:///run/podman/podman.sock ./wizcli docker scan --image mongo:latest
+      run: DOCKER_HOST=unix:///run/user/1000/podman/podman.sock ./wizcli docker scan --image mongo:latest
